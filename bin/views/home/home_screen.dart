@@ -1,0 +1,37 @@
+
+import 'package:dart_console/dart_console.dart';
+import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
+
+
+import '../console_screen.dart';
+
+class HomeScreen implements ConsoleScreen{
+
+  @override
+  void consolePrint() {
+    final console = Console();
+    console.clearScreen();
+    
+    ascii_art.printLogo();
+    console
+      ..setBackgroundColor(ConsoleColor.blue)
+      ..setForegroundColor(ConsoleColor.white)
+      ..writeLine('Simple Demo', TextAlignment.center)
+      ..resetColorAttributes()
+      ..writeLine()
+      ..writeLine('This console window has ${console.windowWidth} cols and '
+          '${console.windowHeight} rows.')
+      ..writeLine()
+      ..writeLine('This text is left aligned.', TextAlignment.left)
+      ..writeLine('This text is center aligned.', TextAlignment.center)
+      ..writeLine('This text is right aligned.', TextAlignment.right);
+
+    for (final color in ConsoleColor.values) {
+      console
+        ..setForegroundColor(color)
+        ..writeLine(color.toString().split('.').last);
+    }
+    console.resetColorAttributes();
+  }
+
+}
