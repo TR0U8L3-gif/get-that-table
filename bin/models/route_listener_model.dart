@@ -1,5 +1,3 @@
-import 'package:dart_console/dart_console.dart';
-
 import '../controllers/route_controller/route_controller.dart';
 
 class RouteListener {

@@ -14,7 +14,7 @@ class WelcomeScreen implements ConsoleScreen{
     final console = Console();
     console.clearScreen();
     
-    ascii_art.printLogoOffset(_controller.offset);
+    ascii_art.printLogo();
 
     console 
       ..writeLine()
@@ -25,7 +25,7 @@ class WelcomeScreen implements ConsoleScreen{
       ..write("To proceed, press ENTER: ")
       ..hideCursor()
       ;
-
+      
       String? input = stdin.readLineSync();
       _controller.getInput(input);
  

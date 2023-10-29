@@ -1,4 +1,5 @@
 import '../../services/route_notification_service.dart';
+import '../../views/admin/admin_screen.dart';
 import '../../views/console_screen.dart';
 import '../../views/home/home_screen.dart';
 import '../../views/welcome/welcome_screen.dart';
@@ -10,6 +11,7 @@ enum Route {
   chooseTable,
   getReservation,
   editReservation,
+  admin,
 }
 
 abstract class RouteControllerImp {
@@ -30,8 +32,9 @@ class RouteController implements RouteControllerImp{
   final RouteNotificationService _routeNotificationService = RouteNotificationService();
   final List<Route> _routesTree = [Route.welcome]; 
   final Map<Route, ConsoleScreen> _routesMap = {
-    Route.welcome : WelcomeScreen(),
-    Route.home : HomeScreen(),
+    Route.welcome : new WelcomeScreen(),
+    Route.home : new HomeScreen(),
+    Route.admin : new AdminScreen(),
   };
 
   RouteController._();

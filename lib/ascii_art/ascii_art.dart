@@ -9,6 +9,15 @@ r"'  '--'  |\   --.  |  |        |  |  |  | |  |\ '-'  |  |  |        |  |  \ '-
 r" `------'  `----'  `--'        `--'  `--' `--' `--`--'  `--'        `--'   `--`--' `---' `--' `----' ",
 ];}
 
+void printLogoSmall(){
+  Console console = Console();
+  console
+      ..setBackgroundColor(ConsoleColor.blue)
+      ..setForegroundColor(ConsoleColor.white);
+  console.writeLine("Get that table", TextAlignment.center);
+  console.resetColorAttributes();
+}
+
 void printLogo(){
   Console console = Console();
   console
