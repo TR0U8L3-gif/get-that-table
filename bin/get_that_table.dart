@@ -1,6 +1,5 @@
 import 'package:firedart/firedart.dart';
 
-import 'controllers/admin/admin_controller.dart';
 import 'models/route_listener_model.dart';
 import 'controllers/route_controller/route_controller.dart';
 

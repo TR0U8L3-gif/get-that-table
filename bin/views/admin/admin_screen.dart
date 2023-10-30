@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dart_console/dart_console.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
@@ -13,6 +11,8 @@ class AdminScreen implements ConsoleScreen{
   void consolePrint() {
     final console = Console();
     console.clearScreen();
+    console.resetColorAttributes();
+    console.resetColorAttributes();
     
     ascii_art.printLogoSmall();
 
@@ -23,7 +23,7 @@ class AdminScreen implements ConsoleScreen{
       ;
 
     if(!_controller.isRestaurantCreating) {
-      String? input = stdin.readLineSync();
+      String? input = console.readLine();
       _controller.getInput(input);
     }
     

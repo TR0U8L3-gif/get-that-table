@@ -33,8 +33,8 @@ void printLogo(){
 void printLogoOffset(int offset){
   Console console = Console();
   int width = console.windowWidth;
-  int logo_width = getLogoAscii()[0].length;
-  if(offset < 0 || offset + logo_width >= width){
+  int logoWidth = getLogoAscii()[0].length;
+  if(offset < 0 || offset + logoWidth >= width){
     printLogo();
     return;
   }

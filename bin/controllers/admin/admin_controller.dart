@@ -1,6 +1,3 @@
-import 'dart:io';
-import 'dart:isolate';
-
 import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
@@ -17,21 +14,27 @@ class AdminController extends ConsoleController{
   
   @override
   Future<void> getInput(String? input) async {
-    if(input == null) return;
+    if(input == null || input.isEmpty){
+      RouteController.getInstance().newRouteNotification();
+      return;
+    }
+
     
     if(isCreateMode){
       createModeInput(input);
       return;
     }
     
-    if(input.isEmpty || input == "back"){
+    if(input == "back"){
       RouteController.getInstance().toPreviosRoute();
       return;
     }
+    
     if(input == "create"){
       isCreateMode = true;
-      RouteController.getInstance().newRouteNotification();
     }
+
+    RouteController.getInstance().newRouteNotification();
   }
 
   createModeInput(String input) async {
@@ -69,11 +72,10 @@ class AdminController extends ConsoleController{
       console.clearScreen();
       ascii_art.printLogoSmall();
 
-      
-
       String message = "Change restaurant $input: ";
       console.write(message);
-      String consoleInput = stdin.readLineSync() ?? "none";
+      console.hideCursor();
+      String consoleInput = console.readLine() ?? "none";
       
       switch(input){
         case "name":
@@ -87,6 +89,8 @@ class AdminController extends ConsoleController{
         break;
       }
     }
+
+    RouteController.getInstance().newRouteNotification();
   }
 
   Future<void> createRestaurant(Map<String, dynamic> object) async{ 
@@ -117,7 +121,7 @@ class AdminController extends ConsoleController{
     if(isCreateMode){
       message = builder.getMessage();
       if(builder.getState() == RestaurantBuilderState.done){
-        message += "\nTo change specific value type it name\nTo accept restaurant type 'push'\nTo reject changes type 'back'";
+        message += "\nTo change specific value type it name\nTo accept restaurant type: push\nTo reject changes type: back";
       }
     }
     message += "\nInput: ";

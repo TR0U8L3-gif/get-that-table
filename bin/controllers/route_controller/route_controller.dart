@@ -32,9 +32,9 @@ class RouteController implements RouteControllerImp{
   final RouteNotificationService _routeNotificationService = RouteNotificationService();
   final List<Route> _routesTree = [Route.welcome]; 
   final Map<Route, ConsoleScreen> _routesMap = {
-    Route.welcome : new WelcomeScreen(),
-    Route.home : new HomeScreen(),
-    Route.admin : new AdminScreen(),
+    Route.welcome : WelcomeScreen(),
+    Route.home : HomeScreen(),
+    Route.admin : AdminScreen(),
   };
 
   RouteController._();

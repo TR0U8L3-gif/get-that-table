@@ -5,7 +5,7 @@ class Restaurant{
 
   Restaurant({required this.name, required this.street, required this.type,});
 
-  Restaurant fromJson(Map<String, dynamic> data) {
+  static Restaurant fromJson(Map<String, dynamic> data) {
     return Restaurant(
       name: data['name'] ?? " ", 
       street: data['street'] ?? " ", 
