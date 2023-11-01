@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:dart_console/src/key.dart';
 
-import '../../models/console_controller.dart';
-import '../route_controller/route_controller.dart';
+import '../console_controller_impl.dart';
+import '../route/route_controller.dart';
 
-class WelcomeController extends ConsoleController{
+class WelcomeController extends ConsoleControllerImpl{
 
   @override
   void getInput(String input) {

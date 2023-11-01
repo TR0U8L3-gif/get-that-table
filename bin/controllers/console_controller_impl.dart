@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dart_console/dart_console.dart';
 
-abstract class ConsoleController{
+abstract class ConsoleControllerImpl{
   void getInput(String input);
   void getKey(Key input){
     if(input.isControl && input.controlChar == ControlCharacter.ctrlC){

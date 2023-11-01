@@ -2,9 +2,9 @@ import 'package:dart_console/dart_console.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
 import '../../controllers/welcome/welcome_controller.dart';
-import '../console_screen.dart';
+import '../console_screen_imp.dart';
 
-class WelcomeScreen implements ConsoleScreen{
+class WelcomeScreen implements ConsoleScreenImp{
   final WelcomeController _controller = WelcomeController();
 
   @override

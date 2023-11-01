@@ -2,12 +2,12 @@ import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
-import '../../models/console_controller.dart';
-import '../../models/restaurant_builder.dart';
-import '../route_controller/route_controller.dart';
+import '../console_controller_impl.dart';
+import '../../models/restaurant/restaurant_builder.dart';
+import '../route/route_controller.dart';
 
 
-class AdminController extends ConsoleController{
+class AdminController extends ConsoleControllerImpl{
   bool isCreateMode = false;
   bool isRestaurantCreating = false;
   RestaurantBuilder builder = RestaurantBuilder();

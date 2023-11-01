@@ -1,4 +1,4 @@
-import '../controllers/route_controller/route_controller.dart';
+import '../../controllers/route/route_controller.dart';
 
 class RouteListener {
   void update(){

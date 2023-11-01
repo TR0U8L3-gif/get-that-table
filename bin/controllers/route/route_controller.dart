@@ -1,6 +1,6 @@
-import '../../services/route_notification_service.dart';
+import '../../services/route/route_notification_service.dart';
 import '../../views/admin/admin_screen.dart';
-import '../../views/console_screen.dart';
+import '../../views/console_screen_imp.dart';
 import '../../views/home/home_screen.dart';
 import '../../views/welcome/welcome_screen.dart';
 
@@ -16,7 +16,7 @@ enum Route {
 
 abstract class RouteControllerImp {
   Route getRoute();
-  ConsoleScreen getScreen();
+  ConsoleScreenImp getScreen();
   /// go to `destination` route 
   void toRoute(Route destination);
   /// go to `destination` route and delete previous one
@@ -31,7 +31,7 @@ class RouteController implements RouteControllerImp{
   static final RouteController _routeController = RouteController._();
   final RouteNotificationService _routeNotificationService = RouteNotificationService();
   final List<Route> _routesTree = [Route.welcome]; 
-  final Map<Route, ConsoleScreen> _routesMap = {
+  final Map<Route, ConsoleScreenImp> _routesMap = {
     Route.welcome : WelcomeScreen(),
     Route.home : HomeScreen(),
     Route.admin : AdminScreen(),
@@ -57,7 +57,7 @@ class RouteController implements RouteControllerImp{
   }
 
   @override
-  ConsoleScreen getScreen() {
+  ConsoleScreenImp getScreen() {
     return _routesMap[getRoute()] ?? WelcomeScreen();
   }
   

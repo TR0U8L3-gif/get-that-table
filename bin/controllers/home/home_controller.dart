@@ -2,11 +2,11 @@ import 'package:dart_console/dart_console.dart';
 import 'package:dart_console/src/key.dart';
 import 'package:firedart/firestore/firestore.dart';
 
-import '../../models/console_controller.dart';
-import '../../models/restaurant_model.dart';
-import '../route_controller/route_controller.dart';
+import '../console_controller_impl.dart';
+import '../../models/restaurant/restaurant_model.dart';
+import '../route/route_controller.dart';
 
-class HomeController extends ConsoleController{
+class HomeController extends ConsoleControllerImpl{
   bool isLoading = true;
   bool isError = false;
   bool updateView = true;
