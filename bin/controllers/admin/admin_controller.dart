@@ -2,7 +2,7 @@ import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
-import '../console_controller_impl.dart';
+import '../_impl/console_controller_impl.dart';
 import '../../models/restaurant/restaurant_builder.dart';
 import '../route/route_controller.dart';
 

@@ -1,14 +1,14 @@
 import 'package:dart_console/dart_console.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
-import '../../controllers/home/home_controller.dart';
-import '../console_screen_imp.dart';
+import '../../controllers/chooseRestaurant/choose_restaurant_controller.dart';
+import '../_impl/console_screen_imp.dart';
 
-class HomeScreen implements ConsoleScreenImp{
-  final HomeController _controller = HomeController();
+class ChooseRestaurantScreen implements ConsoleScreenImp{
+  final ChooseRestaurantController _controller = ChooseRestaurantController();
   bool reload = false;
 
-  HomeScreen(){
+  ChooseRestaurantScreen(){
     _controller.getRestaurants();
   }
 

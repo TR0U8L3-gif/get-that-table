@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:dart_console/src/key.dart';
 
-import '../console_controller_impl.dart';
+import '../_impl/console_controller_impl.dart';
 import '../route/route_controller.dart';
 
 class WelcomeController extends ConsoleControllerImpl{
@@ -10,7 +10,7 @@ class WelcomeController extends ConsoleControllerImpl{
   @override
   void getInput(String input) {
     if(input.isEmpty){
-      RouteController.getInstance().toRoute(Route.home);
+      RouteController.getInstance().toRoute(Route.chooseRestaurant);
       return;
     }
     if(input == "admin"){

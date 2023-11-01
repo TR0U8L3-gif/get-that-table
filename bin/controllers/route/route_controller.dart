@@ -1,12 +1,11 @@
 import '../../services/route/route_notification_service.dart';
 import '../../views/admin/admin_screen.dart';
-import '../../views/console_screen_imp.dart';
-import '../../views/home/home_screen.dart';
+import '../../views/_impl/console_screen_imp.dart';
+import '../../views/chooseRestaurant/choose_restaurant_screen.dart';
 import '../../views/welcome/welcome_screen.dart';
 
 enum Route {
   welcome,
-  home,
   chooseRestaurant,
   chooseTable,
   getReservation,
@@ -33,7 +32,7 @@ class RouteController implements RouteControllerImp{
   final List<Route> _routesTree = [Route.welcome]; 
   final Map<Route, ConsoleScreenImp> _routesMap = {
     Route.welcome : WelcomeScreen(),
-    Route.home : HomeScreen(),
+    Route.chooseRestaurant : ChooseRestaurantScreen(),
     Route.admin : AdminScreen(),
   };
 

@@ -1,5 +1,5 @@
 import '../../models/route/route_listener_model.dart';
-import '../notification_service_imp.dart';
+import '../_impl/notification_service_imp.dart';
 
 class RouteNotificationService implements NotificationService<RouteListener> {
   final List<RouteListener> _subscribers = [];

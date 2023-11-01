@@ -2,7 +2,7 @@ import 'package:dart_console/dart_console.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
 import '../../controllers/admin/admin_controller.dart';
-import '../console_screen_imp.dart';
+import '../_impl/console_screen_imp.dart';
 
 class AdminScreen implements ConsoleScreenImp{
   final AdminController _controller = AdminController();
