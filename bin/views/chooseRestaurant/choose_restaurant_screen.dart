@@ -37,7 +37,7 @@ class ChooseRestaurantScreen implements ConsoleScreenImp{
       ..writeLine(" Error Loading Restaurants", TextAlignment.center)
       ..resetColorAttributes()
       ..writeLine()
-      ..writeLine(" Press any key to exit ", TextAlignment.center)
+      ..writeLine(" Press any key to go back ", TextAlignment.center)
       ..hideCursor()
       ;
       

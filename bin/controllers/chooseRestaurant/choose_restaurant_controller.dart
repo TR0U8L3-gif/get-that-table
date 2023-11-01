@@ -35,6 +35,7 @@ class ChooseRestaurantController extends ConsoleControllerImpl{
       updateView = false;
       RouteController.getInstance().newRouteNotification();
     }).onError((error, stackTrace) {
+      isLoading = false;
       isError = true;
       updateView = true;
       RouteController.getInstance().newRouteNotification();
@@ -81,6 +82,10 @@ class ChooseRestaurantController extends ConsoleControllerImpl{
           updateView = true;
           index = 0;
           RouteController.getInstance().toPreviosRoute();
+          return;
+        } 
+        else {
+          RouteController.getInstance().toRoute(Route.chooseTable, restaurants[index]);
           return;
         }
       }

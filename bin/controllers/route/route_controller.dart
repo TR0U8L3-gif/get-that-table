@@ -2,6 +2,7 @@ import '../../services/route/route_notification_service.dart';
 import '../../views/admin/admin_screen.dart';
 import '../../views/_impl/console_screen_imp.dart';
 import '../../views/chooseRestaurant/choose_restaurant_screen.dart';
+import '../../views/chooseTable/choose_table_screen.dart';
 import '../../views/welcome/welcome_screen.dart';
 
 enum Route {
@@ -32,9 +33,12 @@ class RouteController implements RouteControllerImp{
   final List<Route> _routesTree = [Route.welcome]; 
   final Map<Route, ConsoleScreenImp> _routesMap = {
     Route.welcome : WelcomeScreen(),
-    Route.chooseRestaurant : ChooseRestaurantScreen(),
     Route.admin : AdminScreen(),
+    Route.chooseRestaurant : ChooseRestaurantScreen(),
+    Route.chooseTable : ChooseTableScreen(),
   };
+
+  Object? param;
 
   RouteController._();
 
@@ -61,20 +65,23 @@ class RouteController implements RouteControllerImp{
   }
   
   @override
-  void toRoute(Route destination) {
+  void toRoute(Route destination, [Object? param]) {
+    this.param = param; 
     _routesTree.add(destination);
     newRouteNotification();
   }
   
   @override
-  void offAllRoute(Route destination) {
+  void offAllRoute(Route destination, [Object? param]) {
+    this.param = param; 
     _routesTree.clear();
     _routesTree.add(destination);
     newRouteNotification();
   }
   
   @override
-  void offRoute(Route destination) {
+  void offRoute(Route destination, [Object? param]) {
+    this.param = param; 
     _routesTree.removeLast();
     _routesTree.add(destination);
     newRouteNotification();
@@ -82,6 +89,7 @@ class RouteController implements RouteControllerImp{
   
   @override
   void toPreviosRoute() {
+    param = null;
     _routesTree.removeLast();
     if(_routesTree.isEmpty){
       _routesTree.add(Route.welcome);

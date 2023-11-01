@@ -100,8 +100,9 @@ class AdminController extends ConsoleControllerImpl{
       console.clearScreen();
       ascii_art.printLogoSmall();
       console.writeLine();
-      console.writeLine("createing restaurant: ${builder.toString()}");
-    await Firestore.instance.collection('restaurants').add(object).then((value) {
+      console.writeLine("creating restaurant: ${builder.toString()}");
+    Document doc = await Firestore.instance.collection('restaurants').add(object);
+    await Firestore.instance.collection('restaurants').document(doc.id).update({'id' : doc.id}).then((value) {
       console.clearScreen();
       ascii_art.printLogoSmall();
       console.writeLine();
@@ -112,7 +113,6 @@ class AdminController extends ConsoleControllerImpl{
         builder.clear();
         RouteController.getInstance().newRouteNotification();
       });
-      
     });
   } 
 
