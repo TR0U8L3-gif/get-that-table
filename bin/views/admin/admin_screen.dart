@@ -23,7 +23,7 @@ class AdminScreen implements ConsoleScreen{
       ;
 
     if(!_controller.isRestaurantCreating) {
-      String? input = console.readLine();
+      String input = console.readLine() ?? "";
       _controller.getInput(input);
     }
     

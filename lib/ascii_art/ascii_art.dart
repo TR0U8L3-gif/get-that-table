@@ -48,3 +48,7 @@ void printLogoOffset(int offset){
     console.resetColorAttributes();
   
 }
+
+String printDecorated(String s){
+    return "<:>:<:> $s <:>:<:>";
+  }

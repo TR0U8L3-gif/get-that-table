@@ -1,13 +1,14 @@
 import 'dart:io';
 
+import 'package:dart_console/src/key.dart';
+
 import '../../models/console_controller.dart';
 import '../route_controller/route_controller.dart';
 
 class WelcomeController extends ConsoleController{
 
   @override
-  void getInput(String? input){
-    if(input == null) return;
+  void getInput(String input) {
     if(input.isEmpty){
       RouteController.getInstance().toRoute(Route.home);
       return;
@@ -21,6 +22,10 @@ class WelcomeController extends ConsoleController{
     RouteController.getInstance().newRouteNotification();
   }
 
-
+  @override
+  void getKey(Key input) {
+    super.getKey(input);
+    RouteController.getInstance().newRouteNotification();
+  }
 
 }

@@ -14,10 +14,16 @@ class HomeScreen implements ConsoleScreen{
 
   @override
   void consolePrint() {
-    if(reload){
+    
+    if(reload && _controller.updateView){
       _controller.getRestaurants();
       reload = false;
     }
+
+    if(_controller.isError){
+      _controller.updateView = true;
+    }
+
     final console = Console();
     console.clearScreen();
     ascii_art.printLogoSmall();
@@ -45,15 +51,28 @@ class HomeScreen implements ConsoleScreen{
     reload = true;
 
     console.writeLine();
-    for(var restaurant in _controller.restaurants){
-      console.writeLine(restaurant.toJson(), TextAlignment.center);
-    }
-    console.writeLine("back", TextAlignment.center);
-    console.writeLine();
-    String? input = console.readLine();
-    _controller.getInput(input);
+    for(int i = 0; i <= _controller.restaurants.length; i++){
 
-  
+      if(i<_controller.restaurants.length){
+        var restaurant = _controller.restaurants[i];
+        var message = restaurant.toString();
+        console.writeLine(
+          _controller.index == i ? ascii_art.printDecorated(message) : message, 
+          TextAlignment.center);
+      }
+      else {
+        console.writeLine();
+        console.writeLine(
+          _controller.index == i ? ascii_art.printDecorated("back") : "back", 
+          TextAlignment.center);
+      }
+    }
+    
+    console.writeLine();
+    Key input = console.readKey();
+    _controller.getKey(input);
+    console.resetCursorPosition();
+    console.rawMode = false;
   }
 
 }

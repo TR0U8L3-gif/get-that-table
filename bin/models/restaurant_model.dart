@@ -21,4 +21,9 @@ class Restaurant{
     };
   }
 
+  @override
+  String toString() {
+    return "$name ($type) - $street";
+  }
+
 }

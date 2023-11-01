@@ -25,7 +25,7 @@ class WelcomeScreen implements ConsoleScreen{
       ..hideCursor()
       ;
       
-      String? input = console.readLine();
+      String input = console.readLine() ?? "";
       _controller.getInput(input);
  
     

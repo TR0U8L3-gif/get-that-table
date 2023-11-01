@@ -13,8 +13,8 @@ class AdminController extends ConsoleController{
   RestaurantBuilder builder = RestaurantBuilder();
   
   @override
-  Future<void> getInput(String? input) async {
-    if(input == null || input.isEmpty){
+  Future<void> getInput(String input) async {
+    if( input.isEmpty){
       RouteController.getInstance().newRouteNotification();
       return;
     }
@@ -127,5 +127,10 @@ class AdminController extends ConsoleController{
     message += "\nInput: ";
     return message;
   }
-
+  
+  @override
+  void getKey(Key input) {
+    super.getKey(input);
+    RouteController.getInstance().newRouteNotification();
+  }
 }
