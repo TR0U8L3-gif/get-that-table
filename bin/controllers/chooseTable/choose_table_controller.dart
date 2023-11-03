@@ -1,5 +1,6 @@
 import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
+import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
 import '../../models/reservation/reservation_builder.dart';
 import '../../models/restaurant/restaurant_model.dart';
@@ -12,6 +13,7 @@ class ChooseTableController extends ConsoleControllerImpl {
   bool isError = false;
   bool updateView = true;
   bool isCreateMode = false;
+   bool isReservationCreating = false;
 
   Restaurant? restaurant;
   RestaurantTable? table;
@@ -109,7 +111,7 @@ class ChooseTableController extends ConsoleControllerImpl {
       }
 
       if(input == "push"){
-        //TODO: zrób to debilu
+        createReservation(builder.build().toJson());
         return; 
       }
 
@@ -156,6 +158,47 @@ class ChooseTableController extends ConsoleControllerImpl {
     }
   }
   
+  Future<void> createReservation(Map<String, dynamic> object) async{ 
+    isReservationCreating = true;
+    final console = Console();
+      console.clearScreen();
+      ascii_art.printLogoSmall();
+      console.writeLine();
+      console.writeLine("creating reservation: ${builder.toString()}");
+    Document doc = await Firestore.instance.collection('reservations').add(object);
+    await Firestore.instance.collection('reservations').document(doc.id).update({'id' : doc.id}).then((value) {
+      console.clearScreen();
+      ascii_art.printLogoSmall();
+      console.writeLine();
+      ascii_art.printTable(builder.tableSize ?? "L", builder.additionalChairs ?? 0);
+      console.writeLine();
+      console.writeLine("REMEMBER YOUR RESERVATION ID IF YOU WANT TO MAKE CHANGES!!!", TextAlignment.center);
+      console..setForegroundColor(ConsoleColor.blue)..setTextStyle(underscore: true);
+      console.writeLine("  ");
+      console.resetColorAttributes();
+      console.writeLine();
+      console.writeLine("\nreservation created:");
+      console.writeLine("\treservation id: ${doc.id} ${builder.toString()}");
+      console..setForegroundColor(ConsoleColor.blue)..setTextStyle(underscore: true);
+      console.writeLine("  ");
+      console.resetColorAttributes();
+      console.setForegroundColor(ConsoleColor.green);
+      console.writeLine();
+      console.writeLine("Press any key to continue ", TextAlignment.center);
+      console.resetColorAttributes();
+
+      console.readKey();
+      console.clearScreen();
+      console.resetCursorPosition();
+      console.rawMode = false;
+      isReservationCreating = false;
+      isCreateMode = false;
+      builder.clear();
+      RouteController.getInstance().toPreviosRoute();
+    });
+  } 
+
+
   @override
   void getKey(Key input) {
     super.getKey(input);

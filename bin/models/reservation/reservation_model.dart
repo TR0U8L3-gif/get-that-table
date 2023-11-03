@@ -1,4 +1,5 @@
 class Reservation {
+  String id;
   String surname;
   String rid;
   DateTime date;
@@ -6,6 +7,7 @@ class Reservation {
   int additionalChairs;
 
   Reservation({
+    this.id = "",
     required this.surname,
     required this.rid,
     required this.date,
@@ -15,6 +17,7 @@ class Reservation {
 
   static Reservation fromJson(Map<String, dynamic> data) {
   return Reservation(
+    id : data["id"] ?? "",
     surname : data["surname"] ?? "",
     rid : data["rid"] ?? "",
     date : data["date"] ?? DateTime.now(),
@@ -25,6 +28,7 @@ class Reservation {
 
   Map<String, dynamic> toJson() {
     return {
+      "id" : id,
       "surname" : surname,
       "rid" : rid,
       "date" : date,

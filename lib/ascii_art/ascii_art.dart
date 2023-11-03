@@ -53,7 +53,7 @@ String printDecorated(String s){
   return "<:>:<:> $s <:>:<:>";
 }
 
-void printTable(String size){
+void printTable(String size, [int additionalChairs = 0]){
   int tableWidth = 0;
   int seats = 0;
   switch(size){
@@ -77,16 +77,19 @@ void printTable(String size){
     break;
   }
 
+  int addFirst = additionalChairs ~/ 2;
+  int addSecond = additionalChairs - addFirst;
+
   tableWidth= (seats~/2) * 3;
 
   Console console = Console();
   console.writeLine();
-  console.writeLine(" █ " * (seats~/2), TextAlignment.center);
+  console.writeLine(" █ " * (seats~/2 + addFirst), TextAlignment.center);
   console.writeLine();
   for(int i = 0 ; i < 4; i++){
     console.writeLine("█" * tableWidth, TextAlignment.center);
   }
   console.writeLine();
-  console.writeLine(" █ " * (seats~/2), TextAlignment.center);
+  console.writeLine(" █ " * (seats~/2 + addSecond), TextAlignment.center);
   console.writeLine();
 }

@@ -62,8 +62,10 @@ class ChooseTableScreen extends ConsoleScreenImp{
 
     if(!_controller.isLoading){
       console.write(_controller.getMessage());
-      String input = console.readLine() ?? "";
-      _controller.getInput(input);
+      if(!_controller.isReservationCreating){
+        String input = console.readLine() ?? "";
+        _controller.getInput(input);
+      }
     }
     
   }

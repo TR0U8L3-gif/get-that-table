@@ -21,6 +21,8 @@ abstract class RouteControllerImp {
   void toRoute(Route destination);
   /// go to `destination` route and delete previous one
   void offRoute(Route destination);
+  /// go back until `destination` route is found
+  void offUntilRoute(Route destination);
   /// go to `destination` route and delete all previous routes
   void offAllRoute(Route destination);
   /// go to previos route
@@ -86,6 +88,18 @@ class RouteController implements RouteControllerImp{
     _routesTree.add(destination);
     newRouteNotification();
   }
+
+  @override
+  void offUntilRoute(Route destination, [Object? param]) {
+    this.param = param; 
+    while(_routesTree.last != destination && _routesTree.isNotEmpty){
+      _routesTree.removeLast();
+    }
+    if(_routesTree.isEmpty){
+      _routesTree.add(Route.welcome);
+    }
+    newRouteNotification();
+  }
   
   @override
   void toPreviosRoute() {
@@ -96,5 +110,5 @@ class RouteController implements RouteControllerImp{
     }
     newRouteNotification();
   }
-  
+
 }

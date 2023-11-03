@@ -101,6 +101,8 @@ class ReservationBuilder {
   @override
   String toString() {
     String message = "\n\t";
+    // message += "restaurant id: $rid,";
+    // message += "\n\t";
     message += "surname: $surname,";
     message += "\n\t";
     message += "date: $date,";
@@ -108,7 +110,7 @@ class ReservationBuilder {
     message += "table size: $tableSize, ";
     message += "\n\t";
     message += "additional chairs: $additionalChairs";
-    message += "\n\n";
+    message += "\n";
     return message;
   }
 }
