@@ -33,4 +33,20 @@ class RestaurantTable {
       );
   }
 
+  @override
+  String toString() {
+    String message = "Tables available in sizes: ";
+    for (String size in sizes) {
+      message += "$size, ";
+    }
+    message += "\n\nTabele size description:\n";
+    for (String size in sizes) {
+      message += "$size: ${tableSizeDescription[size]}";
+      message += "\n";
+    }
+    message += "\n";
+    message += "Number of chairs to be added: $additionalChairs";
+    return message;
+  }
+
 }

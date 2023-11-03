@@ -67,25 +67,16 @@ class AdminController extends ConsoleControllerImpl{
         RouteController.getInstance().newRouteNotification();
         return;
       }
-
-      final console = Console();
-      console.clearScreen();
-      ascii_art.printLogoSmall();
-
-      String message = "Change restaurant $input: ";
-      console.write(message);
-      console.hideCursor();
-      String consoleInput = console.readLine() ?? "none";
       
       switch(input){
         case "name":
-        builder.setName(consoleInput);
+        builder.name = null;
         break;
         case "street":
-        builder.setStreet(consoleInput);
+        builder.street = null;
         break;
         case "type":
-        builder.setType(consoleInput);
+        builder.type = null;
         break;
       }
     }

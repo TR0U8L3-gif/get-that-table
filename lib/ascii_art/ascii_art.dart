@@ -50,5 +50,43 @@ void printLogoOffset(int offset){
 }
 
 String printDecorated(String s){
-    return "<:>:<:> $s <:>:<:>";
+  return "<:>:<:> $s <:>:<:>";
+}
+
+void printTable(String size){
+  int tableWidth = 0;
+  int seats = 0;
+  switch(size){
+    case "S":
+      seats = 2;
+    break;
+    case "M":
+      seats = 4;
+    break;
+    case "L":
+      seats = 6;
+    break;
+    case "XL":
+      seats = 8;
+    break;
+    case "XXL":
+      seats = 12;
+    break;
+    default:
+      seats = 4;
+    break;
   }
+
+  tableWidth= (seats~/2) * 3;
+
+  Console console = Console();
+  console.writeLine();
+  console.writeLine(" █ " * (seats~/2), TextAlignment.center);
+  console.writeLine();
+  for(int i = 0 ; i < 4; i++){
+    console.writeLine("█" * tableWidth, TextAlignment.center);
+  }
+  console.writeLine();
+  console.writeLine(" █ " * (seats~/2), TextAlignment.center);
+  console.writeLine();
+}

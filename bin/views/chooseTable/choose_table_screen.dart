@@ -24,9 +24,10 @@ class ChooseTableScreen extends ConsoleScreenImp{
     ascii_art.printLogoSmall();
     
     reload = true;
+    console.writeLine("Restaurant id: ${_controller.restaurant?.id}", TextAlignment.center);
     console.writeLine();
     console.writeLine(_controller.restaurant, TextAlignment.center);
-    console.writeLine(_controller.restaurant?.id);
+    console.writeLine();
 
     if(_controller.isLoading){
       console.writeLine(" Loading Tables...", TextAlignment.center);
@@ -49,17 +50,21 @@ class ChooseTableScreen extends ConsoleScreenImp{
       _controller.getInput("back");
       return;
     }
-
+    console..setForegroundColor(ConsoleColor.blue)..setTextStyle(underscore: true);
+    console.writeLine("  ");
+    console.resetColorAttributes();
+    console.writeLine("  ");
     console.writeLine(_controller.table, TextAlignment.center);
+    console..setForegroundColor(ConsoleColor.blue)..setTextStyle(underscore: true);
+    console.writeLine("  ");
+    console.resetColorAttributes();
     console.writeLine();
 
     if(!_controller.isLoading){
-      console.write("Input: ");
+      console.write(_controller.getMessage());
       String input = console.readLine() ?? "";
       _controller.getInput(input);
     }
-
-
     
   }
 
