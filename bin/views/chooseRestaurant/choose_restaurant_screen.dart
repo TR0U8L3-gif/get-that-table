@@ -63,7 +63,7 @@ class ChooseRestaurantScreen implements ConsoleScreenImp{
       else {
         console.writeLine();
         console.writeLine(
-          _controller.index == i ? ascii_art.printDecorated("back") : "back", 
+          _controller.index == i ? ascii_art.printDecorated("back") : "back (Ctrl+B)", 
           TextAlignment.center);
       }
     }

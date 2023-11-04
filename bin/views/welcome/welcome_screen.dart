@@ -21,6 +21,7 @@ class WelcomeScreen implements ConsoleScreenImp{
       ..writeLine()
       ..writeLine("To exit type: exit")
       ..writeLine("To proceed press: ENTER")
+      ..writeLine("To find reservation type: reservation id")
       ..write("Input: ")
       ..hideCursor()
       ;

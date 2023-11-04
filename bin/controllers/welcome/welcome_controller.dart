@@ -19,6 +19,9 @@ class WelcomeController extends ConsoleControllerImpl{
     if(input == "exit"){
       exit(0);
     }
+    if(input.length >= 18){
+      RouteController.getInstance().toRoute(Route.getReservation, input);
+    }
     RouteController.getInstance().newRouteNotification();
   }
 

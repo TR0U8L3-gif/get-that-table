@@ -73,7 +73,7 @@ void printTable(String size, [int additionalChairs = 0]){
       seats = 12;
     break;
     default:
-      seats = 4;
+      seats = 0;
     break;
   }
 
@@ -86,7 +86,7 @@ void printTable(String size, [int additionalChairs = 0]){
   console.writeLine();
   console.writeLine(" █ " * (seats~/2 + addFirst), TextAlignment.center);
   console.writeLine();
-  for(int i = 0 ; i < 4; i++){
+  for(int i = 0 ; i < 3; i++){
     console.writeLine("█" * tableWidth, TextAlignment.center);
   }
   console.writeLine();

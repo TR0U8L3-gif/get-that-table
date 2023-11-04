@@ -66,7 +66,7 @@ class ChooseRestaurantController extends ConsoleControllerImpl{
       if(input.controlChar == ControlCharacter.arrowDown){
         updateIndex(1);
       }
-      if(input.controlChar == ControlCharacter.ctrlP){
+      if(input.controlChar == ControlCharacter.ctrlB){
         updateView = true;
         index = 0;
         RouteController.getInstance().toPreviosRoute();
