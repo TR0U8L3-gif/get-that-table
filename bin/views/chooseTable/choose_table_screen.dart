@@ -26,8 +26,8 @@ class ChooseTableScreen extends ConsoleScreenImp{
     reload = true;
     console.writeLine("Restaurant id: ${_controller.restaurant?.id}", TextAlignment.center);
     console.writeLine();
-    console.writeLine(_controller.restaurant, TextAlignment.center);
-    console.writeLine();
+    console..setForegroundColor(_controller.isError || _controller.isLoading ? ConsoleColor.white : ConsoleColor.blue)..writeLine(_controller.restaurant, TextAlignment.center);
+    console..writeLine()..resetColorAttributes();
 
     if(_controller.isLoading){
       console.writeLine(" Loading Tables...", TextAlignment.center);

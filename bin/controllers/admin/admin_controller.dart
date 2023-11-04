@@ -2,15 +2,20 @@ import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
 
+import '../../models/restaurantTable/restaurant_table_builder.dart';
 import '../_impl/console_controller_impl.dart';
 import '../../models/restaurant/restaurant_builder.dart';
 import '../route/route_controller.dart';
 
 
 class AdminController extends ConsoleControllerImpl{
-  bool isCreateMode = false;
-  bool isRestaurantCreating = false;
-  RestaurantBuilder builder = RestaurantBuilder();
+  bool isCreateRestaurantMode = false;
+  RestaurantBuilder restaurantBuilder = RestaurantBuilder();
+
+  bool isCreateTableMode = false;
+  RestaurantTableBuilder tableBuilder = RestaurantTableBuilder();
+
+  bool isCreating = false;
   
   @override
   Future<void> getInput(String input) async {
@@ -20,8 +25,13 @@ class AdminController extends ConsoleControllerImpl{
     }
 
     
-    if(isCreateMode){
-      createModeInput(input);
+    if(isCreateRestaurantMode){
+      createRestaurantModeInput(input);
+      return;
+    }
+
+    if(isCreateTableMode){
+      createTableModeInput(input);
       return;
     }
     
@@ -30,35 +40,41 @@ class AdminController extends ConsoleControllerImpl{
       return;
     }
     
-    if(input == "create"){
-      isCreateMode = true;
+    if(input == "restaurant"){
+      isCreateRestaurantMode = true;
+      isCreateTableMode = false;
+    }
+
+    if(input == "table"){
+      isCreateRestaurantMode = false;
+      isCreateTableMode = true;
     }
 
     RouteController.getInstance().newRouteNotification();
   }
 
-  createModeInput(String input) async {
+  createRestaurantModeInput(String input) async {
     if(input == "exit"){
-      isCreateMode = false;
-      builder.clear();
+      isCreateRestaurantMode = false;
+      restaurantBuilder.clear();
       RouteController.getInstance().newRouteNotification();
       return;
     }
-    if(builder.getState() != RestaurantBuilderState.done){
-      builder.setInput(input);
+    if(restaurantBuilder.getState() != RestaurantBuilderState.done){
+      restaurantBuilder.setInput(input);
       RouteController.getInstance().newRouteNotification();
       return;
     }
     else {
       if(input == "back"){
-        isCreateMode = false;
-        builder.clear();
+        isCreateRestaurantMode = false;
+        restaurantBuilder.clear();
         RouteController.getInstance().newRouteNotification();
         return;
       }
 
       if(input == "push"){
-        createRestaurant(builder.build().toJson());
+        createRestaurant(restaurantBuilder.build().toJson());
         return; 
       }
 
@@ -70,13 +86,13 @@ class AdminController extends ConsoleControllerImpl{
       
       switch(input){
         case "name":
-        builder.name = null;
+        restaurantBuilder.name = null;
         break;
         case "street":
-        builder.street = null;
+        restaurantBuilder.street = null;
         break;
         case "type":
-        builder.type = null;
+        restaurantBuilder.type = null;
         break;
       }
     }
@@ -86,33 +102,106 @@ class AdminController extends ConsoleControllerImpl{
 
   Future<void> createRestaurant(Map<String, dynamic> object) async{ 
     //{"name" : "a", "street" : "a","type" : "a"}
-    isRestaurantCreating = true;
+    isCreating = true;
     final console = Console();
       console.clearScreen();
       ascii_art.printLogoSmall();
       console.writeLine();
-      console.writeLine("creating restaurant: ${builder.toString()}");
+      console.writeLine("creating restaurant: ${restaurantBuilder.toString()}");
     Document doc = await Firestore.instance.collection('restaurants').add(object);
     await Firestore.instance.collection('restaurants').document(doc.id).update({'id' : doc.id}).then((value) {
       console.clearScreen();
       ascii_art.printLogoSmall();
       console.writeLine();
-      console.writeLine("restaurant created: ${builder.toString()}");
+      console.writeLine("restaurant created: ${restaurantBuilder.toString()}");
       Future.delayed(const Duration(seconds: 5), () {
-        isRestaurantCreating = false;
-        isCreateMode = false;
-        builder.clear();
+        isCreating = false;
+        isCreateRestaurantMode = false;
+        restaurantBuilder.clear();
+        RouteController.getInstance().newRouteNotification();
+      });
+    });
+  } 
+
+  createTableModeInput(String input) async {
+    if(input == "exit"){
+      isCreateTableMode = false;
+      tableBuilder.clear();
+      RouteController.getInstance().newRouteNotification();
+      return;
+    }
+    if(tableBuilder.getState() != RestaurantTableBuilderState.done){
+      tableBuilder.setInput(input);
+      RouteController.getInstance().newRouteNotification();
+      return;
+    }
+    else {
+      if(input == "back"){
+        isCreateTableMode = false;
+        tableBuilder.clear();
+        RouteController.getInstance().newRouteNotification();
+        return;
+      }
+
+      if(input == "push"){
+        createTable(tableBuilder.build().toJson());
+        return; 
+      }
+
+      if(!["restaurant id", "sizes", "additional chairs"].contains(input)){
+        RouteController.getInstance().newRouteNotification();
+        return;
+      }
+      
+      switch(input){
+        case "restaurant id":
+        tableBuilder.restaurantId = null;
+        break;
+        case "sizes":
+        tableBuilder.sizes = [];
+        break;
+        case "additional chairs":
+        tableBuilder.additionalChairs = null;
+        break;
+      }
+    }
+
+    RouteController.getInstance().newRouteNotification();
+  }
+
+  Future<void> createTable(Map<String, dynamic> object) async {
+    isCreating = true;
+    final console = Console();
+      console.clearScreen();
+      ascii_art.printLogoSmall();
+      console.writeLine();
+      console.writeLine("creating table: ${tableBuilder.toString()}");
+    await Firestore.instance.collection('tables').document(object['rid']).update(object).then((value) {
+      console.clearScreen();
+      ascii_art.printLogoSmall();
+      console.writeLine();
+      console.writeLine("table created: ${tableBuilder.toString()}");
+      Future.delayed(const Duration(seconds: 5), () {
+        isCreating = false;
+        isCreateTableMode = false;
+        tableBuilder.clear();
         RouteController.getInstance().newRouteNotification();
       });
     });
   } 
 
   String getMessage(){
-    String message = "To go back type: back \nTo create new restaurant in database type: create";
-    if(isCreateMode){
-      message = builder.getMessage();
-      if(builder.getState() == RestaurantBuilderState.done){
+    String message = "To go back type: back \nTo create new table in database type: table\nTo create new restaurant in database type: restaurant";
+    if(isCreateRestaurantMode){
+      message = restaurantBuilder.getMessage();
+      if(restaurantBuilder.getState() == RestaurantBuilderState.done){
         message += "\nTo change specific value type it name\nTo accept restaurant type: push\nTo reject changes type: back";
+      }
+    }
+    if(isCreateTableMode){
+      message = tableBuilder.getMessage();
+      if(tableBuilder.getState() == RestaurantTableBuilderState.done){
+        message += "\nTo change specific value type it name\nTo accept table type: push\nTo reject changes type: back";
       }
     }
     message += "\nInput: ";
