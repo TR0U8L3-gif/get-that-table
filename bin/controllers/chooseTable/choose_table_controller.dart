@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
@@ -28,6 +30,7 @@ class ChooseTableController extends ConsoleControllerImpl {
       restaurant = RouteController.getInstance().param as Restaurant;
     } catch (e) {
       restaurant = null;
+      isLoading = false;
       isError = true;
     }
     updateView = false;
@@ -70,6 +73,10 @@ class ChooseTableController extends ConsoleControllerImpl {
       return;
     }
 
+    if(input == "exit"){
+      exit(0);
+    }
+
     if(isCreateMode){
       createModeInput(input);
       return;
@@ -89,7 +96,7 @@ class ChooseTableController extends ConsoleControllerImpl {
   }
 
   createModeInput(String input) async {
-    if(input == "exit"){
+    if(input == "back"){
       isCreateMode = false;
       builder.clear();
       RouteController.getInstance().newRouteNotification();
@@ -103,12 +110,6 @@ class ChooseTableController extends ConsoleControllerImpl {
       return;
     }
     else {
-      if(input == "back"){
-        isCreateMode = false;
-        builder.clear();
-        RouteController.getInstance().newRouteNotification();
-        return;
-      }
 
       if(input == "push"){
         createReservation(builder.build().toJson());

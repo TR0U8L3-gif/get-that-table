@@ -3,6 +3,7 @@ import '../../views/admin/admin_screen.dart';
 import '../../views/_impl/console_screen_imp.dart';
 import '../../views/chooseRestaurant/choose_restaurant_screen.dart';
 import '../../views/chooseTable/choose_table_screen.dart';
+import '../../views/editReservation/edit_reservation_screen.dart';
 import '../../views/getReservation/get_reservation_screen.dart';
 import '../../views/welcome/welcome_screen.dart';
 
@@ -40,6 +41,7 @@ class RouteController implements RouteControllerImp{
     Route.chooseRestaurant : ChooseRestaurantScreen(),
     Route.chooseTable : ChooseTableScreen(),
     Route.getReservation : GetReservationScreen(),
+    Route.editReservation : EditReservationScreen(),
   };
 
   Object? param;

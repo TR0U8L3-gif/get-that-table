@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_console/dart_console.dart';
 import 'package:dart_console/src/key.dart';
 import 'package:firedart/firestore/firestore.dart';
@@ -47,6 +49,10 @@ class ChooseRestaurantController extends ConsoleControllerImpl{
     if(input.isEmpty){
       RouteController.getInstance().newRouteNotification();
       return;
+    }
+
+    if(input == "exit"){
+      exit(0);
     }
 
     if(input == "back"){

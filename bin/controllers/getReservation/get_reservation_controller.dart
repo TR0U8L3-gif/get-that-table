@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 
@@ -23,6 +25,7 @@ class GetReservationController extends ConsoleControllerImpl{
       reservationId = RouteController.getInstance().param as String;
     } catch (e) {
       reservationId = null;
+      isLoading = false;
       isError = true;
     }
     updateView = false;
@@ -67,6 +70,10 @@ class GetReservationController extends ConsoleControllerImpl{
       RouteController.getInstance().newRouteNotification();
       return;
     }
+    
+    if(input == "exit"){
+      exit(0);
+    }
 
     if(input == "back"){
       updateView = true;
@@ -75,7 +82,8 @@ class GetReservationController extends ConsoleControllerImpl{
     }
 
     if(input=="edit"){
-      //TODO: edit
+      RouteController.getInstance().toRoute(Route.editReservation, <String,dynamic>{"restaurant" : restaurant, "reservation": reservation});
+      return;
     }
     RouteController.getInstance().newRouteNotification();
   }

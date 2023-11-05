@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dart_console/dart_console.dart';
 import 'package:firedart/firedart.dart';
 import 'package:get_that_table/ascii_art/ascii_art.dart' as ascii_art;
@@ -24,6 +26,9 @@ class AdminController extends ConsoleControllerImpl{
       return;
     }
 
+    if(input == "exit"){
+      exit(0);
+    }
     
     if(isCreateRestaurantMode){
       createRestaurantModeInput(input);
@@ -54,7 +59,7 @@ class AdminController extends ConsoleControllerImpl{
   }
 
   createRestaurantModeInput(String input) async {
-    if(input == "exit"){
+    if(input == "back"){
       isCreateRestaurantMode = false;
       restaurantBuilder.clear();
       RouteController.getInstance().newRouteNotification();
@@ -66,12 +71,6 @@ class AdminController extends ConsoleControllerImpl{
       return;
     }
     else {
-      if(input == "back"){
-        isCreateRestaurantMode = false;
-        restaurantBuilder.clear();
-        RouteController.getInstance().newRouteNotification();
-        return;
-      }
 
       if(input == "push"){
         createRestaurant(restaurantBuilder.build().toJson());
