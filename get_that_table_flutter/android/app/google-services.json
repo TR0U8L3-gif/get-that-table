@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "802188051793",
+    "project_id": "get-that-table-d392b",
+    "storage_bucket": "get-that-table-d392b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:802188051793:android:be11e9abdff22140947f70",
+        "android_client_info": {
+          "package_name": "com.example.get_that_table_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWX8Ip3KhIUi59wtFTozhlHPd5B1fJ9Jw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
