@@ -100,14 +100,14 @@ class RouteController implements RouteControllerImp{
   }
 
   @override
-  void toPreviousRoute(BuildContext context) {
-    param = null;
+  void toPreviousRoute(BuildContext context, [Object? param]) {
+    this.param = param;
     _routesTree.removeLast();
     Navigator.of(context).pop();
     if(_routesTree.isEmpty){
       _routesTree.add(Route.welcome);
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => getWidget()));
     }
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => getWidget()));
   }
 
 }

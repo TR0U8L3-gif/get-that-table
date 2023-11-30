@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/get_that_table_dart/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/get_that_table_dart/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/get_that_table_dart/build" />
+      <excludeFolder url="file://$MODULE_DIR$/get_that_table_flutter/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/get_that_table_flutter/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/get_that_table_flutter/build" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+  </component>
+</module>

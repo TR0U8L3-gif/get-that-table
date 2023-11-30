@@ -92,7 +92,7 @@ class _GetReservationScreenState extends State<GetReservationScreen> {
 
   void _editReservation() {
     print('Edit Reservation');
-    rc.RouteController.getInstance().toRoute(context, rc.Route.editReservation);
+    rc.RouteController.getInstance().toRoute(context, rc.Route.editReservation, {"reservation": reservation, "restaurant": restaurant});
   }
 
   @override
@@ -100,6 +100,15 @@ class _GetReservationScreenState extends State<GetReservationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Reservation Details'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: InkWell(
+              onTap: () => _updateReservation(),
+              child: const Icon(Icons.cached_rounded),
+            ),
+          )
+        ],
       ),
       body: Container(
         width: double.infinity,
@@ -168,7 +177,7 @@ class _GetReservationScreenState extends State<GetReservationScreen> {
                     Text('Table Size: ${reservation.tableSize}'),
                     SizedBox(height: 8.0),
                     Text('Additional Chairs: ${reservation.additionalChairs}'),
-                    SizedBox(height: 16.0),
+                    SizedBox(height: 8.0),
                     Text('Restaurant: ${restaurant.name} (${restaurant.type})'),
                     SizedBox(height: 8.0),
                     Text('Street: ${restaurant.street}'),
