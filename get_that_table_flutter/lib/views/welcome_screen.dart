@@ -19,7 +19,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
 
   void _goToAdminPanel(){
     print('Navigating to Admin Panel');
-    rc.RouteController.getInstance().toRoute(context, rc.Route.admin);
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      content: Text('You do not have administrator rights ☺'),
+    ));
   }
 
   void _searchRestaurant(){

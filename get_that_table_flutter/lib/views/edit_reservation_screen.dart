@@ -201,7 +201,7 @@ class _EditReservationScreenState extends State<EditReservationScreen> {
           ),
           SizedBox(height: 16.0),
           Text(
-            "Error loading reservation",
+            "Error Loading Reservation",
             style: TextStyle(color: Colors.red),
           ),
         ],
